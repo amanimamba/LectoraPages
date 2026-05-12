@@ -1,7 +1,8 @@
 import { Link } from 'react-router-dom';
 import { motion } from 'motion/react';
 import { mockCategories } from '../data/mockData';
-import * as Icons from 'lucide-react';
+import { ArrowRight } from 'lucide-react';
+import CategoryIcon from '../components/common/CategoryIcon';
 
 export default function Categories() {
   return (
@@ -22,8 +23,6 @@ export default function Categories() {
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10">
           {mockCategories.map((cat, idx) => {
-            const IconComponent = (Icons as any)[cat.icon || 'Hash'];
-            
             return (
               <motion.div
                 key={cat.id}
@@ -40,7 +39,7 @@ export default function Categories() {
                     className="w-20 h-20 rounded-[1.5rem] flex items-center justify-center mb-10 group-hover:scale-110 transition-transform duration-500"
                     style={{ backgroundColor: `${cat.color}15`, color: cat.color }}
                   >
-                    {IconComponent && <IconComponent size={36} strokeWidth={2.5} />}
+                    <CategoryIcon iconName={cat.icon} size={36} strokeWidth={2.5} />
                   </div>
                   
                   <h3 className="text-3xl font-display font-black mb-6 text-slate-900 dark:text-white uppercase tracking-tighter group-hover:text-accent transition-colors">
@@ -52,7 +51,7 @@ export default function Categories() {
                   </p>
                   
                   <div className="flex items-center gap-3 text-[10px] font-black uppercase tracking-widest text-slate-400 group-hover:text-accent transition-colors">
-                    Explorer <Icons.ArrowRight size={14} className="group-hover:translate-x-2 transition-transform" />
+                    Explorer <ArrowRight size={14} className="group-hover:translate-x-2 transition-transform" />
                   </div>
                 </Link>
               </motion.div>

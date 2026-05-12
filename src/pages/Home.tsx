@@ -6,6 +6,7 @@ import { mockArticles, mockCategories } from '../data/mockData';
 import { cn } from '../lib/utils';
 import { useUI } from '../contexts/UIContext';
 import ArticleCard from '../components/articles/ArticleCard';
+import CategorySpotlight from '../components/layout/CategorySpotlight';
 
 export default function Home() {
   const { t, language } = useUI();
@@ -154,33 +155,7 @@ export default function Home() {
       {/* Trending Bar section ... (already there) */}
 
       {/* Categories Spotlight */}
-      <section className="px-6 mb-12">
-        <div className="max-w-7xl mx-auto">
-          <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-8 gap-4">
-            {mockCategories.map((cat, idx) => {
-              return (
-                <Link 
-                  key={cat.id}
-                  to={`/category/${cat.slug}`}
-                  className="group flex flex-col items-center gap-4 p-6 rounded-3xl bg-slate-50 dark:bg-slate-900 border border-slate-100 dark:border-white/5 hover:border-accent hover:-translate-y-1 transition-all duration-300"
-                >
-                  <div 
-                    className="w-12 h-12 rounded-2xl flex items-center justify-center group-hover:scale-110 transition-transform"
-                    style={{ backgroundColor: `${cat.color}15`, color: cat.color }}
-                  >
-                    <span className="font-bold text-lg">
-                      {cat.name.charAt(0)}
-                    </span>
-                  </div>
-                  <span className="text-[9px] font-black uppercase tracking-widest text-slate-500 dark:text-slate-400 group-hover:text-accent text-center leading-tight">
-                    {cat.name}
-                  </span>
-                </Link>
-              );
-            })}
-          </div>
-        </div>
-      </section>
+      <CategorySpotlight categories={mockCategories} />
 
       {/* Category Filter & Grid ... */}
       <section className="px-6 mb-20 relative">

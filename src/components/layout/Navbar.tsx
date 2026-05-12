@@ -4,25 +4,13 @@ import { Search, Menu, X, Sun, Moon, Languages } from 'lucide-react';
 import { motion, AnimatePresence } from 'motion/react';
 import { cn } from '../../lib/utils';
 import { useUI } from '../../contexts/UIContext';
+import { useScrollProgress } from '../../hooks/useScrollProgress';
 
 export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
-  const [scrolled, setScrolled] = useState(false);
   const location = useLocation();
   const { theme, toggleTheme, language, setLanguage, t } = useUI();
-  const [scrollProgress, setScrollProgress] = useState(0);
-
-  useEffect(() => {
-    const handleScroll = () => {
-      setScrolled(window.scrollY > 20);
-      
-      const totalHeight = document.documentElement.scrollHeight - window.innerHeight;
-      const progress = (window.scrollY / totalHeight) * 100;
-      setScrollProgress(progress);
-    };
-    window.addEventListener('scroll', handleScroll);
-    return () => window.removeEventListener('scroll', handleScroll);
-  }, []);
+  const { progress: scrollProgress, scrolled } = useScrollProgress(20);
 
   useEffect(() => {
     setIsOpen(false);

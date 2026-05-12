@@ -4,6 +4,7 @@ import { TrendingUp, Bell } from 'lucide-react';
 import { mockArticles, mockCategories } from '../data/mockData';
 import { useUI } from '../contexts/UIContext';
 import ArticleCard from '../components/articles/ArticleCard';
+import CategoryIcon from '../components/common/CategoryIcon';
 
 export default function CategoryPage() {
   const { slug } = useParams<{ slug: string }>();
@@ -34,8 +35,14 @@ export default function CategoryPage() {
                 <motion.h1 
                   initial={{ opacity: 0, y: 30 }}
                   animate={{ opacity: 1, y: 0 }}
-                  className="text-5xl sm:text-7xl md:text-8xl lg:text-9xl font-display font-black leading-none mb-8 tracking-tighter text-slate-900 dark:text-white"
+                  className="text-5xl sm:text-7xl md:text-8xl lg:text-9xl font-display font-black leading-none mb-8 tracking-tighter text-slate-900 dark:text-white flex items-center gap-6"
                 >
+                  <CategoryIcon 
+                    iconName={category.icon} 
+                    size={64} 
+                    className="hidden sm:block text-accent" 
+                    strokeWidth={3}
+                  />
                   {category.name}.
                 </motion.h1>
                 <motion.p 
