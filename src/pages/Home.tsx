@@ -42,8 +42,9 @@ export default function Home() {
               <motion.div 
                 className="lg:col-span-7"
                 initial={{ opacity: 0, x: -30 }}
-                animate={{ opacity: 1, x: 0 }}
-                transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
+                whileInView={{ opacity: 1, x: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 1, ease: [0.16, 1, 0.3, 1] }}
               >
                 <div className="flex items-center gap-4 mb-8">
                   <div className="flex items-center gap-2 px-3 py-1.5 bg-accent/10 border border-accent/20 rounded-full">
@@ -59,12 +60,12 @@ export default function Home() {
                 </div>
                 
                 <Link to={`/article/${featuredArticle.slug}`} className="block group">
-                  <h1 className="text-5xl md:text-8xl font-display font-black leading-[1] mb-8 text-slate-900 dark:text-white tracking-tighter group-hover:text-accent transition-colors duration-500">
+                  <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-8xl font-display font-black leading-[0.95] mb-8 text-slate-900 dark:text-white tracking-tighter group-hover:text-accent transition-colors duration-500">
                     {featuredArticle.title}
                   </h1>
                 </Link>
                 
-                <p className="text-xl md:text-2xl text-slate-500 dark:text-slate-400 mb-12 leading-relaxed max-w-2xl font-display italic font-medium">
+                <p className="text-lg md:text-xl lg:text-2xl text-slate-500 dark:text-slate-400 mb-12 leading-relaxed max-w-2xl font-display italic font-medium">
                   "{featuredArticle.summary}"
                 </p>
                 
@@ -150,7 +151,38 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Category Filter & Grid */}
+      {/* Trending Bar section ... (already there) */}
+
+      {/* Categories Spotlight */}
+      <section className="px-6 mb-12">
+        <div className="max-w-7xl mx-auto">
+          <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-8 gap-4">
+            {mockCategories.map((cat, idx) => {
+              return (
+                <Link 
+                  key={cat.id}
+                  to={`/category/${cat.slug}`}
+                  className="group flex flex-col items-center gap-4 p-6 rounded-3xl bg-slate-50 dark:bg-slate-900 border border-slate-100 dark:border-white/5 hover:border-accent hover:-translate-y-1 transition-all duration-300"
+                >
+                  <div 
+                    className="w-12 h-12 rounded-2xl flex items-center justify-center group-hover:scale-110 transition-transform"
+                    style={{ backgroundColor: `${cat.color}15`, color: cat.color }}
+                  >
+                    <span className="font-bold text-lg">
+                      {cat.name.charAt(0)}
+                    </span>
+                  </div>
+                  <span className="text-[9px] font-black uppercase tracking-widest text-slate-500 dark:text-slate-400 group-hover:text-accent text-center leading-tight">
+                    {cat.name}
+                  </span>
+                </Link>
+              );
+            })}
+          </div>
+        </div>
+      </section>
+
+      {/* Category Filter & Grid ... */}
       <section className="px-6 mb-20 relative">
         <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-secondary/5 rounded-full blur-[100px] -z-10" />
         <div className="max-w-7xl mx-auto">
@@ -215,10 +247,10 @@ export default function Home() {
                  <span className="inline-block px-4 py-2 bg-white/5 border border-white/10 rounded-full text-accent text-[10px] font-black uppercase tracking-[0.3em] mb-8">
                     Lectora Club
                  </span>
-                 <h2 className="text-4xl md:text-7xl font-display font-black text-white leading-none mb-10 tracking-tighter">
+                 <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-7xl font-display font-black text-white leading-[0.95] mb-10 tracking-tighter">
                    Informez-vous sans limites ni frontières.
                  </h2>
-                 <p className="text-xl text-slate-400 font-medium leading-relaxed mb-12 italic">
+                 <p className="text-lg md:text-xl text-slate-400 font-medium leading-relaxed mb-12 italic">
                    "Rejoignez nos 45,000 abonnés et accédez à des enquêtes exclusives, des newsletters personnalisées et une expérience sans publicité."
                  </p>
                  <div className="flex flex-col sm:flex-row items-center justify-center gap-6">

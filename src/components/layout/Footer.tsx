@@ -48,12 +48,16 @@ export default function Footer() {
           <div>
             <h4 className="text-[11px] font-black uppercase tracking-[0.3em] text-accent mb-10">L'Agence</h4>
             <ul className="space-y-5 text-sm font-bold">
-              {['Notre équipe', 'Éthique éditoriale', 'Mentions légales', 'Plan du site'].map(item => (
-                <li key={item}>
-                  <Link to="/contact" className="hover:text-white hover:translate-x-1 transition-all inline-block">{item}</Link>
+              {[
+                { name: 'À propos', path: '/about' },
+                { name: 'Contact', path: '/contact' },
+                { name: 'Politique de confidentialité', path: '/privacy' },
+                { name: 'Conditions d’utilisation', path: '/terms' }
+              ].map(item => (
+                <li key={item.name}>
+                  <Link to={item.path} className="hover:text-white hover:translate-x-1 transition-all inline-block">{item.name}</Link>
                 </li>
               ))}
-              <li><Link to="/contact" className="hover:text-white hover:translate-x-1 transition-all inline-block text-accent">Recrutement</Link></li>
             </ul>
           </div>
 
@@ -80,8 +84,8 @@ export default function Footer() {
         <div className="pt-10 border-t border-white/5 flex flex-col md:flex-row justify-between items-center gap-8 text-[10px] font-black uppercase tracking-[0.3em] text-slate-600">
           <p>© 2026 Lectora Media Group. Tous droits réservés.</p>
           <div className="flex gap-12">
-            <span className="hover:text-white transition-colors cursor-pointer">Confidentialité</span>
-            <span className="hover:text-white transition-colors cursor-pointer">Cookies</span>
+            <Link to="/privacy" className="hover:text-white transition-colors cursor-pointer">Confidentialité</Link>
+            <Link to="/terms" className="hover:text-white transition-colors cursor-pointer">Conditions</Link>
             <span className="hover:text-white transition-colors cursor-pointer">Accessibilité</span>
           </div>
         </div>

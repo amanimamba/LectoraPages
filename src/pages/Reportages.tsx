@@ -67,8 +67,8 @@ export default function Reportages() {
                       <div className="flex items-center gap-3 mb-6 text-[10px] font-black uppercase tracking-widest text-vibrant">
                         <span className="w-2 h-2 rounded-full bg-vibrant animate-pulse" /> Live Report
                       </div>
-                      <h2 className="text-4xl md:text-6xl font-display font-black leading-tight mb-8 dark:text-white">{art.title}</h2>
-                      <p className="text-xl text-slate-500 dark:text-slate-400 mb-10 leading-relaxed font-display italic">"{art.summary}"</p>
+                      <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-display font-black leading-tight mb-8 dark:text-white">{art.title}</h2>
+                      <p className="text-lg md:text-xl text-slate-500 dark:text-slate-400 mb-10 leading-relaxed font-display italic font-medium">"{art.summary}"</p>
                       <button className="px-10 py-5 bg-brand dark:bg-white dark:text-brand text-white rounded-2xl font-black text-[11px] uppercase tracking-widest hover:scale-105 transition-all shadow-xl">
                          Lire le Reportage
                       </button>

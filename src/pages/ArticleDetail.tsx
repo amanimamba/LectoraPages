@@ -52,7 +52,7 @@ export default function ArticleDetail() {
                   </div>
                 </div>
 
-                <h1 className="text-4xl md:text-6xl font-display font-black leading-[1.1] mb-10 text-slate-900 dark:text-white tracking-tight">
+                <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-7xl font-display font-black leading-[0.95] mb-10 text-slate-900 dark:text-white tracking-tighter">
                   {article.title}
                 </h1>
 
@@ -79,17 +79,27 @@ export default function ArticleDetail() {
                 </div>
              </header>
 
-             <figure className="mb-12 rounded-[2rem] overflow-hidden shadow-2xl border-[12px] border-white dark:border-slate-900 ring-1 ring-slate-200 dark:ring-slate-800">
+             <motion.figure 
+               initial={{ opacity: 0, scale: 0.95 }}
+               whileInView={{ opacity: 1, scale: 1 }}
+               viewport={{ once: true }}
+               className="mb-12 rounded-[2rem] overflow-hidden shadow-2xl border-[12px] border-white dark:border-slate-900 ring-1 ring-slate-200 dark:ring-slate-800"
+             >
                 <img 
                   src={article.featuredImage} 
                   alt={article.title} 
                   className="w-full h-full object-cover aspect-video"
                 />
-             </figure>
+             </motion.figure>
 
-             <article className="prose prose-slate prose-lg lg:prose-xl max-w-none dark:prose-invert prose-headings:font-display prose-headings:font-black prose-p:font-display prose-p:text-slate-600 dark:prose-p:text-slate-400 prose-p:leading-relaxed prose-blockquote:font-display prose-blockquote:italic prose-blockquote:font-medium prose-blockquote:text-2xl prose-blockquote:text-slate-900 dark:prose-blockquote:text-white prose-blockquote:border-accent">
+             <motion.article 
+               initial={{ opacity: 0, y: 30 }}
+               whileInView={{ opacity: 1, y: 0 }}
+               viewport={{ once: true }}
+               className="prose prose-slate prose-lg lg:prose-xl max-w-none dark:prose-invert prose-headings:font-display prose-headings:font-black prose-p:font-display prose-p:text-slate-600 dark:prose-p:text-slate-400 prose-p:leading-relaxed prose-blockquote:font-display prose-blockquote:italic prose-blockquote:font-medium prose-blockquote:text-2xl prose-blockquote:text-slate-900 dark:prose-blockquote:text-white prose-blockquote:border-accent"
+             >
                 <div dangerouslySetInnerHTML={{ __html: article.content }} />
-             </article>
+             </motion.article>
 
              {/* Author Bio Section */}
              <section className="mt-20 p-10 bg-[#f8f6f1] dark:bg-slate-900/50 rounded-[2rem] border border-slate-200 dark:border-slate-800">

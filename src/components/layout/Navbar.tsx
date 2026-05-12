@@ -10,9 +10,16 @@ export default function Navbar() {
   const [scrolled, setScrolled] = useState(false);
   const location = useLocation();
   const { theme, toggleTheme, language, setLanguage, t } = useUI();
+  const [scrollProgress, setScrollProgress] = useState(0);
 
   useEffect(() => {
-    const handleScroll = () => setScrolled(window.scrollY > 20);
+    const handleScroll = () => {
+      setScrolled(window.scrollY > 20);
+      
+      const totalHeight = document.documentElement.scrollHeight - window.innerHeight;
+      const progress = (window.scrollY / totalHeight) * 100;
+      setScrollProgress(progress);
+    };
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
@@ -45,17 +52,19 @@ export default function Navbar() {
             {/* Desktop Nav */}
             <div className="hidden lg:flex items-center gap-8">
               {[
-                { name: 'Actualités', path: '/category/technologie' },
-                { name: 'Analyses', path: '/analyses' },
-                { name: 'Dossiers', path: '/dossiers' },
-                { name: 'Reportages', path: '/reportages' }
+                { name: 'Accueil', path: '/' },
+                { name: 'Page article', path: '/article/art-de-vivre-kyoto' },
+                { name: 'Catégories', path: '/categories' },
+                { name: 'À propos', path: '/about' },
+                { name: 'Contact', path: '/contact' }
               ].map((item) => (
                 <Link
                   key={item.name}
                   to={item.path}
-                  className={cn(
+                   className={cn(
                     "text-[10px] font-black uppercase tracking-[0.2em] transition-all hover:text-accent",
-                    scrolled ? "text-slate-500 dark:text-slate-400" : "text-slate-600 dark:text-slate-300"
+                    scrolled ? "text-slate-500 dark:text-slate-400" : "text-slate-600 dark:text-slate-300",
+                    location.pathname === item.path && "text-accent border-b-2 border-accent pb-1"
                   )}
                 >
                   {item.name}
@@ -105,6 +114,9 @@ export default function Navbar() {
             </button>
           </div>
         </div>
+
+        {/* Scroll Progress Bar */}
+        <div className="absolute bottom-0 left-0 h-[2px] bg-accent transition-all duration-150 ease-out z-50" style={{ width: `${scrollProgress}%` }} />
       </nav>
 
       {/* Ticker */}
@@ -119,13 +131,13 @@ export default function Navbar() {
         </div>
         <div className="flex-1 relative overflow-hidden whitespace-nowrap">
           <div className="inline-flex gap-12 px-6 animate-ticker">
-            {["🌍 Sommet de l'UA à Addis-Abeba : accords historiques signés", "📈 Marchés : le franc burundais se stabilise face au dollar", "🔬 Découverte d'un nouveau vaccin contre le paludisme", "🏆 CAN 2026 : les qualifications s'intensifient", "💡 Innovation : Kigali classée 3ème ville tech d'Afrique"].map((t, i) => (
+            {["🌍 Kyoto : Nouvelle exposition sur l'art de vivre traditionnel", "🎵 Afrobeats : Burna Boy entre au panthéon de la musique mondiale", "🗺️ Géographie : Les fjords de Norvège menacés par la fonte des glaces", "🏛️ Art : Banksy dévoile une nouvelle fresque à Bristol", "🏙️ Urbanisme : Vienne élue ville la plus agréable au monde"].map((t, i) => (
               <span key={i} className="text-[12px] font-bold flex items-center shrink-0">
                 {t}
               </span>
             ))}
             {/* Duplicate for seamless loop */}
-            {["🌍 Sommet de l'UA à Addis-Abeba : accords historiques signés", "📈 Marchés : le franc burundais se stabilise face au dollar", "🔬 Découverte d'un nouveau vaccin contre le paludisme", "🏆 CAN 2026 : les qualifications s'intensifient", "💡 Innovation : Kigali classée 3ème ville tech d'Afrique"].map((t, i) => (
+            {["🌍 Kyoto : Nouvelle exposition sur l'art de vivre traditionnel", "🎵 Afrobeats : Burna Boy entre au panthéon de la musique mondiale", "🗺️ Géographie : Les fjords de Norvège menacés par la fonte des glaces", "🏛️ Art : Banksy dévoile une nouvelle fresque à Bristol", "🏙️ Urbanisme : Vienne élue ville la plus agréable au monde"].map((t, i) => (
               <span key={`dup-${i}`} className="text-[12px] font-bold flex items-center shrink-0">
                 {t}
               </span>
@@ -159,15 +171,18 @@ export default function Navbar() {
             <div className="flex flex-col gap-8">
               {[
                 { name: 'Accueil', path: '/' },
-                { name: 'Actualités', path: '/category/technologie' },
-                { name: 'Analyses', path: '/analyses' },
-                { name: 'Dossiers', path: '/dossiers' },
-                { name: 'Reportages', path: '/reportages' }
+                { name: 'Page article', path: '/article/art-de-vivre-kyoto' },
+                { name: 'Catégories', path: '/categories' },
+                { name: 'À propos', path: '/about' },
+                { name: 'Contact', path: '/contact' }
               ].map((item) => (
                 <Link
                   key={item.name}
                   to={item.path}
-                  className="text-4xl font-display font-black dark:text-white"
+                  className={cn(
+                    "text-4xl font-display font-black transition-colors",
+                    location.pathname === item.path ? "text-accent" : "dark:text-white"
+                  )}
                   onClick={() => setIsOpen(false)}
                 >
                   {item.name}

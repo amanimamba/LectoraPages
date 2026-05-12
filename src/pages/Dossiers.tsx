@@ -54,7 +54,7 @@ export default function Dossiers() {
             <div className="bg-secondary/5 dark:bg-secondary/10 rounded-[4rem] p-12 md:p-20 flex flex-col md:flex-row items-center gap-16">
                <div className="flex-1">
                   <Zap className="text-secondary mb-8" size={48} />
-                  <h2 className="text-4xl md:text-6xl font-display font-black leading-tight mb-8 dark:text-white">
+                  <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-display font-black leading-tight mb-8 dark:text-white">
                      L'Information sans Compromis.
                   </h2>
                   <p className="text-xl text-slate-500 dark:text-slate-400 leading-relaxed mb-10">

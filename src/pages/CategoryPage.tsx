@@ -34,7 +34,7 @@ export default function CategoryPage() {
                 <motion.h1 
                   initial={{ opacity: 0, y: 30 }}
                   animate={{ opacity: 1, y: 0 }}
-                  className="text-6xl md:text-9xl font-display font-black leading-none mb-8 tracking-tighter text-slate-900 dark:text-white"
+                  className="text-5xl sm:text-7xl md:text-8xl lg:text-9xl font-display font-black leading-none mb-8 tracking-tighter text-slate-900 dark:text-white"
                 >
                   {category.name}.
                 </motion.h1>
@@ -42,7 +42,7 @@ export default function CategoryPage() {
                   initial={{ opacity: 0, y: 20 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ delay: 0.1 }}
-                  className="text-2xl text-slate-500 dark:text-slate-400 font-display italic leading-relaxed max-w-xl"
+                  className="text-lg md:text-xl lg:text-2xl text-slate-500 dark:text-slate-400 font-display italic leading-relaxed max-w-xl"
                 >
                   "{category.description}"
                 </motion.p>

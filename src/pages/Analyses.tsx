@@ -50,7 +50,7 @@ export default function Analyses() {
          <div className="absolute top-0 left-0 w-full h-full bg-[url('https://www.transparenttextures.com/patterns/cubes.png')] opacity-10" />
          <div className="max-w-4xl mx-auto text-center relative z-10">
             <span className="text-accent text-[10px] font-black uppercase tracking-[0.4em] mb-8 block">Le mot de la rédaction</span>
-            <h2 className="text-3xl md:text-5xl font-display font-medium italic leading-tight mb-12">
+            <h2 className="text-2xl sm:text-3xl md:text-5xl font-display font-medium italic leading-tight mb-12">
               "L'analyse n'est pas seulement une explication des faits, c'est une boussole dans la complexité du monde moderne."
             </h2>
             <div className="flex items-center justify-center gap-4">
